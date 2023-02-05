@@ -19,36 +19,37 @@ function App() {
     }],
     "base": "stations",
     "main": {
-        "temp": 30.8,
-        "feels_like": 34.43,
-        "temp_min": 27.72,
-        "temp_max": 31.64,
-        "pressure": 1006,
-        "humidity": 60
+        "temp": 27.05,
+        "feels_like": 29.47,
+        "temp_min": 25.5,
+        "temp_max": 29.18,
+        "pressure": 1007,
+        "humidity": 76,
+        "sea_level": 1007,
+        "grnd_level": 1005
     },
     "visibility": 10000,
     "wind": {
-        "speed": 11.62,
-        "deg": 353,
-        "gust": 4.92
+        "speed": 6.58,
+        "deg": 235,
+        "gust": 12.25
     },
     "clouds": {
         "all": 100
     },
-    "dt": 1675600021,
+    "dt": 1675622661,
     "sys": {
         "type": 2,
-        "id": 2073276,
+        "id": 2033644,
         "country": "ID",
-        "sunrise": 1675551352,
-        "sunset": 1675595835
+        "sunrise": 1675637767,
+        "sunset": 1675682232
     },
     "timezone": 25200,
     "id": 1642911,
     "name": "Jakarta",
     "cod": 200
 }
-
   return (
     <main className="App">
       <WeatherDataContext.Provider value={apiRes}>
