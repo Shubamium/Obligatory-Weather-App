@@ -53,10 +53,16 @@ function App() {
   return (
     <main className="App">
       <WeatherDataContext.Provider value={apiRes}>
-          <Searchbar/>
-          <MainDetail/>
-          <ExtraDetail/>
-          <SideDetail/>
+          <div className="panel_main">
+            <Searchbar/>
+            <div className='main_panel'>
+              <MainDetail/>
+            </div>
+            <ExtraDetail/>
+          </div>
+          <div className='panel_side'>
+            <SideDetail/>
+          </div>
       </WeatherDataContext.Provider>
     </main>
   )
