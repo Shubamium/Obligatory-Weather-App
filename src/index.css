@@ -35,3 +35,8 @@ main{
 .country-data{
   background-color: #EBECF0;
 }
+
+.weather-general_country{
+  display: flex;
+  justify-content: space-between;
+}
