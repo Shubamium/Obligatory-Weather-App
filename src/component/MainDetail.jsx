@@ -5,6 +5,11 @@ import useCountryFlag from '../hooks/useCountryFlag'
 export default function MainDetail() {
     let wd = useContext(weatherDataContext);
     let [countryFlag,error] = useCountryFlag(wd.sys.country);
+
+    function capitalize(toChange){
+        let res = toChange[0].toUpperCase() + toChange.slice(1);
+        return res;
+    }
     return (
         <>
             <div className="country-data">
@@ -18,12 +23,11 @@ export default function MainDetail() {
             </div>
 
             <div className="weather-general">
-                <h2>Weather</h2>
-                <h2>Day-Night</h2>
-                <p>Weather Description</p>
-                <img src="" alt="weather-icon" className="weather-icon"/>
-                <h2>31°</h2>
-                <p>Cloudiness: %</p>
+                <h2>Weather: {wd.weather[0].main}</h2>
+                <p>{capitalize(wd.weather[0].description)}</p>
+                <img src={`http://openweathermap.org/img/wn/${wd.weather[0].icon}@2x.png`} alt="weather-icon" className="weather-icon"/>
+                <h2>{wd.main.temp}°</h2>
+                <p>Cloudiness:{wd.clouds.all}%</p>
             </div>
         </>
     )
