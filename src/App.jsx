@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import ExtraDetail from './component/ExtraDetail'
+import MainDetail from './component/MainDetail'
+import Searchbar from './component/Searchbar'
+import { SideDetail } from './component/SideDetail'
 
 function App() {
   const apiRes = {
@@ -44,9 +47,12 @@ function App() {
     "cod": 200
 }
   return (
-    <div className="App">
-        <p>{JSON.stringify(apiRes)}</p>
-    </div>
+    <main className="App">
+        <Searchbar></Searchbar>
+        <MainDetail></MainDetail>
+        <ExtraDetail/>
+        <SideDetail/>
+    </main>
   )
 }
 
