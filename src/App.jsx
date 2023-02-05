@@ -1,7 +1,9 @@
+import { useContext } from 'react'
 import ExtraDetail from './component/ExtraDetail'
 import MainDetail from './component/MainDetail'
 import Searchbar from './component/Searchbar'
 import { SideDetail } from './component/SideDetail'
+import WeatherDataContext from './context/WeatherDataContext'
 
 function App() {
   const apiRes = {
@@ -46,12 +48,15 @@ function App() {
     "name": "Jakarta",
     "cod": 200
 }
+
   return (
     <main className="App">
-        <Searchbar></Searchbar>
-        <MainDetail></MainDetail>
-        <ExtraDetail/>
-        <SideDetail/>
+      <WeatherDataContext.Provider value={apiRes}>
+          <Searchbar/>
+          <MainDetail/>
+          <ExtraDetail/>
+          <SideDetail/>
+      </WeatherDataContext.Provider>
     </main>
   )
 }
