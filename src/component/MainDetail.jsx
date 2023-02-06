@@ -17,15 +17,18 @@ export default function MainDetail() {
     return (
         <>
             <div className="weather-general">
-                   <div className="weather-general_country">
-                        <div className="text">
-                            <h2>{wd.name}</h2>
-                            {countryFlag && <p>{countryFlag.name}</p>}
-                        </div>
-                        {countryFlag ? <img src={countryFlag.image} alt="country flag" width="100" className='country-flag' /> : <p>Loading Flags. . .</p>}
-                   </div>
-                    <h2>{wd.main.temp}°</h2>
-                    <p>Cloudiness:{wd.clouds.all}%</p>
+                    <div className='weather-general_temp'>
+                        <h2 className='main-temp'>{wd.main.temp}<span>°</span> </h2>
+                        <p className='grey'>Cloudiness:{wd.clouds.all}%</p>
+                    </div>
+                    <div className="weather-general_country">
+                            <div className="text">
+                                <h2>{wd.name}</h2>
+                                {countryFlag && <p className='grey'>{countryFlag.name}</p>}
+                            </div>
+                            {countryFlag ? <img src={countryFlag.image} alt="country flag" width="100" className='country-flag' /> : <p>Loading Flags. . .</p>}
+                    </div>
+                   
             </div>
 
             <div className="country-data">

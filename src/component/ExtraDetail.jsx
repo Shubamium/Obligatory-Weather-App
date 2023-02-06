@@ -13,8 +13,12 @@ export default function ExtraDetail() {
         </div>
 
         <div className="weather-air">
-            <p>Sea Level: {wd.main.sea_level}hPa</p>
-            <p>Ground Level: {wd.main.grnd_level}hPa</p>
+            <p>Pressure: {wd.main.pressure} hPa</p>
+            {wd.main.grnd_level &&  
+            <>
+                <p>Sea Level: {wd.main.sea_level}hPa</p>
+                <p>Ground Level: {wd.main.grnd_level}hPa</p>
+            </> }
             <p>Humidity: {wd.main.humidity}%</p>
         </div>
     </div>

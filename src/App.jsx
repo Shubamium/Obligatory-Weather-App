@@ -6,7 +6,7 @@ import { SideDetail } from './component/SideDetail'
 import WeatherDataContext from './context/WeatherDataContext'
 
 function App() {
-  const apiRes = {
+  const jakartaSample = {
     "coord": {
         "lon": 106.8451,
         "lat": -6.2146
@@ -49,10 +49,51 @@ function App() {
     "id": 1642911,
     "name": "Jakarta",
     "cod": 200
-}
+  }
+  const manilaSample = {
+      "coord": {
+          "lon": 120.9822,
+          "lat": 14.6042
+      },
+      "weather": [{
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+      }],
+      "base": "stations",
+      "main": {
+          "temp": 25.41,
+          "feels_like": 26.12,
+          "temp_min": 25.07,
+          "temp_max": 26.17,
+          "pressure": 1011,
+          "humidity": 81
+      },
+      "visibility": 9000,
+      "wind": {
+          "speed": 0.51,
+          "deg": 0
+      },
+      "clouds": {
+          "all": 75
+      },
+      "dt": 1675640053,
+      "sys": {
+          "type": 2,
+          "id": 2008256,
+          "country": "PH",
+          "sunrise": 1675635807,
+          "sunset": 1675677405
+      },
+      "timezone": 28800,
+      "id": 1701668,
+      "name": "Manila",
+      "cod": 200
+  }
   return (
     <main className="App">
-      <WeatherDataContext.Provider value={apiRes}>
+      <WeatherDataContext.Provider value={manilaSample}>
           <div className="panel_main">
             <Searchbar/>
             <div className='main_panel'>
