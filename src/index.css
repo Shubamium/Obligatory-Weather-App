@@ -133,7 +133,35 @@ main{
   font-weight: 500;
   font-size: 1rem;
 }
+.air-condition .stats{
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1em;
+}
+.air-condition .stats .stat{
+  border-radius: 5px;
+  padding: .4em;
+  background-color: #232c3d12;
+  display: flex;
+  gap: .2em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.air-condition .stats .stat h2{
+  font-size: small;
+}
+.air-condition .stats .stat p{
+  font-size: 1.4rem;
+}
 
+.stat .icon{
+  color: #959AA4;
+}
+.stat .text{
+  font-weight: bold;
+}
 svg{
   vertical-align: baseline;
 }
