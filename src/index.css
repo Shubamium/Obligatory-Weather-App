@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 :root {
   font-family: 'Urbanist', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color: #2C3543;
+  color: #232C3D;
   background-color: #F6F6F6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,7 +20,7 @@
 }
 .main_panel{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 1em;
 }
 
@@ -39,14 +38,7 @@ main{
 .grey{
   color: #959AA4;
 }
-.country-data{
-  background: linear-gradient(90deg,#ced7fc 0%,  rgba(147, 169, 255, 0.224)00%);
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-}
+
 
 .weather-general_country{
   display: flex;
@@ -61,7 +53,7 @@ main{
 }
 .weather-general_country .text{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
 }
 .weather-general_country .text h2{
@@ -89,4 +81,59 @@ main{
 }
 .main-temp .span{
   font-weight: normal;
+}
+
+
+.country-data{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  padding: 1em;
+  background-color: rgb(166, 186, 207);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+  .country-data img{
+    margin: -1em 0; 
+  }
+  .country-data h2{
+    margin: -.4em 0;
+  }
+
+.img-shadow{
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+}
+
+.main-temp svg{
+  top: 10px;
+  position: relative;
+  margin: 0 -15px;
+}
+
+.white{
+  color: whitesmoke;
+}
+.air-condition{
+  margin: 1.4em 0;
+  background-color: #EBECF0;
+  padding: 1em;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+}
+.air-condition h2{
+  color: #959AA4;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+svg{
+  vertical-align: baseline;
 }

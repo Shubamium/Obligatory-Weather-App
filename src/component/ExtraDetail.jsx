@@ -1,26 +1,68 @@
 import React, { useContext } from 'react'
+import { WiBarometer, WiThermometerInternal } from 'react-icons/wi';
+import { TbTemperatureMinus, TbTemperaturePlus} from 'react-icons/tb';
+import {BiTargetLock} from 'react-icons/bi'
 import weatherDataContext from '../context/WeatherDataContext'
+import {GiWindTurbine} from 'react-icons/gi'
+import { WeatherStat } from './WeatherStat';
 
 export default function ExtraDetail() {
-    const wd = useContext(weatherDataContext);
+  const wd = useContext(weatherDataContext);
   return (
-    <div>
-        <h2>Air Conditions</h2>
-         <div className="weather-temp">
-            <p>Real Feel:{wd.main.feels_like}°</p>
-            <p>Min Temp:{wd.main.temp_min}°</p>
-            <p>Max Temp:{wd.main.temp_max}°</p>
+    <div className='air-condition'>
+        <h2><GiWindTurbine />AIR CONDITIONS</h2>
+        <div className="stats">
+          <WeatherStat header="Wind" text="20hPa" icon={<WiThermometerInternal fontSize={'2rem'}/>} />
+          <WeatherStat header="Pressure" text="20hPa" icon={<WiThermometerInternal/>} />
+          <WeatherStat header="Blabla" text="20hPa" icon={<WiThermometerInternal/>} />
+        </div>
+
+         {/* <div className="weather-temp">
+            <div className="stat">
+              <WiThermometerInternal className='icon'/>
+              <div className="text">
+                <h2>Real Feel</h2>
+                <p>{wd.main.feels_like}°</p>
+              </div>
+            </div>
+            <div className="stat">
+              <TbTemperatureMinus className="icon" />
+              <div className="text">
+                <h2>Min Temp</h2>
+                <p>{wd.main.temp_min}°</p>
+              </div>
+            </div>
+            <div className="stat">
+              <TbTemperaturePlus className="icon" />
+              <div className="text">
+                <h2>Max Temp</h2>
+                <p>{wd.main.temp_max}°</p>
+              </div>
+            </div>
         </div>
 
         <div className="weather-air">
-            <p>Pressure: {wd.main.pressure} hPa</p>
+            <div className="stat">
+              <BiTargetLock/>
+              <h2>Pressure</h2>
+              <p>{wd.main.pressure} hPa</p>
+            </div>
             {wd.main.grnd_level &&  
             <>
-                <p>Sea Level: {wd.main.sea_level}hPa</p>
-                <p>Ground Level: {wd.main.grnd_level}hPa</p>
+                <div className="stat">
+                  <h2>Sea Level</h2>
+                  <p>{wd.main.sea_level} hPa</p>
+                </div>
+                <div className="stat">
+                  <h2>Ground Level</h2>
+                  <p>{wd.main.grnd_level} hPa</p>
+                </div>
             </> }
-            <p>Humidity: {wd.main.humidity}%</p>
-        </div>
+            <div className="stat">
+                  <h2>Humiditiy</h2>
+                  <p>{wd.main.humidity} %</p>
+            </div> */}
+        {/* </div> */}
     </div>
   )
 }
