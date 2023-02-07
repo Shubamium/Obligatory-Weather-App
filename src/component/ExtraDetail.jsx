@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { WiBarometer, WiThermometer, WiThermometerInternal } from 'react-icons/wi';
+import { WiBarometer, WiHumidity, WiThermometer, WiThermometerInternal } from 'react-icons/wi';
 import { TbTemperatureMinus, TbTemperaturePlus} from 'react-icons/tb';
 import {BiTargetLock} from 'react-icons/bi'
 import weatherDataContext from '../context/WeatherDataContext'
@@ -12,6 +12,8 @@ export default function ExtraDetail() {
     <div className='air-condition'>
         <h2><GiWindTurbine />AIR CONDITIONS</h2>
         <div className="stats">
+          <WeatherStat header="Real Feel" text={wd.main.feels_like + '°C'} icon={<WiThermometer fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
+          <WeatherStat header="Humidity " text={wd.main.humidity + '%'} icon={<WiHumidity fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
           <WeatherStat header="Pressure" text={wd.main.feels_like + 'hPa' } icon={<BiTargetLock fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
           <WeatherStat header="Min Temperature" text={wd.main.temp_min + '°C'} icon={<TbTemperatureMinus fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
           <WeatherStat header="Max Temperature " text={wd.main.temp_max + '°C'} icon={<TbTemperaturePlus fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />

@@ -1,14 +1,18 @@
 import { useContext } from "react";
 import weatherDataContext from "../context/WeatherDataContext";
-
+import { WeatherStat } from "./WeatherStat";
+import { WiStrongWind, WiWindDeg } from "react-icons/wi";
+import {BsSpeedometer2 } from "react-icons/bs"
 export function SideDetail(){
     const wd = useContext(weatherDataContext);
     return(
         <>
-            <h2>Wind</h2>
-            <p>Speed: {wd.wind.speed} m/s</p>
-            <p>Direction: {wd.wind.deg}°</p>
-            {wd.wind.gust && <p>Gust: {wd.wind.gust} m/s</p>}
+            <h2><WiStrongWind/>Wind</h2>
+            <div className="stats">
+                  <WeatherStat header="Speed" icon={ <BsSpeedometer2/> }text={wd.wind.speed + 'm/s'}/>
+                  <WeatherStat header="Direction" icon={<WiWindDeg/>} text={wd.wind.deg + '°'}/>
+                {wd.wind.gust && <WeatherStat header="Gust" text={wd.wind.gust + 'm/s'} />}
+            </div>
         </>
     );
 }

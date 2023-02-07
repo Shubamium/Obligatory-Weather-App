@@ -20,14 +20,14 @@
 }
 .main_panel{
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1.5fr;
   gap: 1em;
 }
 
 main{
   padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 80px;
+  grid-template-columns: 1fr 150px;
   gap:1em;
 }
 #root{
@@ -114,6 +114,13 @@ main{
   position: relative;
   margin: 0 -15px;
 }
+.panel_side{
+}
+.panel_side .stats{
+  display: flex;
+  flex-direction: column;
+  gap:1em;
+}
 
 .white{
   color: whitesmoke;
@@ -135,10 +142,12 @@ main{
 }
 .air-condition .stats{
   display: grid;
-  grid-auto-flow: column;
+  /* grid-auto-flow: column; */
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1em;
+  padding: .8em;
 }
-.air-condition .stats .stat{
+.weather-stat{
   border-radius: 5px;
   padding: .4em;
   background-color: #232c3d12;
@@ -148,20 +157,37 @@ main{
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  color: #959AA4;
 }
-.air-condition .stats .stat h2{
+.weather-stat h2{
   font-size: small;
 }
-.air-condition .stats .stat p{
+.weather-stat p{
   font-size: 1.4rem;
 }
 
-.stat .icon{
+.weather-stat .icon{
   color: #959AA4;
 }
-.stat .text{
-  font-weight: bold;
+.weather-stat .value{
+  color: #232C3D;
 }
 svg{
   vertical-align: baseline;
 }
+
+
+.cloud{
+  background-color: #232C3D;
+  padding: .5em;
+  margin: .8em 0;
+  max-width: 40%;
+}
+  .cloud .cloud_header{
+    padding: -3px 0;
+  }
+  .cloud .cloud_percent{
+    color: white;
+    font-size: 1.2rem;
+    line-height: 90%;
+  }

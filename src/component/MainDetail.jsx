@@ -4,6 +4,7 @@ import { WiThermometer, WiCelsius, WiCloud } from 'react-icons/wi';
 import {TiWeatherPartlySunny} from 'react-icons/ti'
 import weatherDataContext from '../context/WeatherDataContext'
 import useCountryFlag from '../hooks/useCountryFlag'
+import { WeatherStat } from './WeatherStat';
 
 export default function MainDetail() {
     let wd = useContext(weatherDataContext);
@@ -26,7 +27,11 @@ export default function MainDetail() {
                     <div className='weather-general_temp'>
                         {wd && <>
                             <h2 className='main-temp'><WiThermometer fontSize={'1em'} alignmentBaseline={'baseline'}/>{wd.main.temp}<span className='grey'><WiCelsius alignmentBaseline={'ideographic'} fontFamily={'Urbanist'}/></span></h2>
-                           <p className='grey'><TiWeatherPartlySunny alignmentBaseline={'auto'} />Cloudiness<br></br>{wd.clouds.all}%</p>
+                            {/* <WeatherStat header="Cloudiness" text={wd.clouds.all + '%'} icon={<TiWeatherPartlySunny alignmentBaseline={'baseline'}/>}/> */}
+                            <div className="cloud">
+                                <p className='grey cloud_header'><TiWeatherPartlySunny alignmentBaseline={'auto'} />Cloudiness</p>
+                                <p className='cloud_percent'>{wd.clouds.all}%</p>
+                            </div>
                         </>}
                     </div>
                     <div className="weather-general_country">
