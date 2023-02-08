@@ -30,6 +30,11 @@
   grid-template-columns: 1fr 150px;
   gap:1em;
 }
+@media screen and (max-width:1000px) {
+  .App{
+    display: block;
+  }
+}
 #root{
   margin: 0 auto;
   max-width: 900px;
