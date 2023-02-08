@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ExtraDetail from './component/ExtraDetail'
 import MainDetail from './component/MainDetail'
-import Searchbar from './component/Searchbar'
 import { SideDetail } from './component/SideDetail'
 import WeatherDataContext from './context/WeatherDataContext'
 import AsyncSelect from 'react-select/async'
 import axios from 'axios'
-import { delay, motion , AnimatePresence} from 'framer-motion'
+import { motion , AnimatePresence} from 'framer-motion'
+
 function App() {
+
   const jakartaSample = {
     "coord": {
         "lon": 106.8451,
@@ -52,60 +53,21 @@ function App() {
     "name": "Jakarta",
     "cod": 200
   }
-  const manilaSample = {
-      "coord": {
-          "lon": 120.9822,
-          "lat": 14.6042
-      },
-      "weather": [{
-          "id": 803,
-          "main": "Clouds",
-          "description": "broken clouds",
-          "icon": "04d"
-      }],
-      "base": "stations",
-      "main": {
-          "temp": 25.41,
-          "feels_like": 26.12,
-          "temp_min": 25.07,
-          "temp_max": 26.17,
-          "pressure": 1011,
-          "humidity": 81
-      },
-      "visibility": 9000,
-      "wind": {
-          "speed": 0.51,
-          "deg": 0
-      },
-      "clouds": {
-          "all": 75
-      },
-      "dt": 1675640053,
-      "sys": {
-          "type": 2,
-          "id": 2008256,
-          "country": "PH",
-          "sunrise": 1675635807,
-          "sunset": 1675677405
-      },
-      "timezone": 28800,
-      "id": 1701668,
-      "name": "Manila",
-      "cod": 200
-  }
+
   const [weatherData, setWeatherData] = useState(null);
   const [currentCity, setCurrentCity] = useState('');
   const apikey = '0825296408d1c2e6799cc152703d801e';
 
   async function handleCitySearch(val){
-    let fetch = await axios.get(`https://api.api-ninjas.com/v1/city?name=${val}`,{
+    let link = new URL("https://api.api-ninjas.com/v1/city");
+    link.searchParams.append('name',val);
+    let fetch = await axios.get(link.href,{
       headers:{
         'Content-Type':'application/json',
         'X-API-KEY':'vFuWC7Us573uNb763J90Vg==5y0lzPB2KiuSeY2Z'
       }
     })
     let result = fetch.data;
-    // console.log('city:' + val);
     let option = result.map((city)=>{return {value:city.name,label:city.name}});
     return option;
   }
@@ -114,12 +76,18 @@ function App() {
     console.log(val.value);
     setCurrentCity(val.value);
   }
+
   useEffect(()=>{
     setWeatherData('');
     if(currentCity === '') return;
     async function loadData(){
       try{
-        let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&units=metric&appid=${apikey}`)
+        let url = new URL("https://api.openweathermap.org/data/2.5/weather");
+        url.searchParams.append('q',currentCity);
+        url.searchParams.append('units','metric');
+        url.searchParams.append('appid',apikey);
+
+        let response = await axios.get(url.href);
         if(response && response.data){
           setWeatherData(response.data);
         }
@@ -131,9 +99,11 @@ function App() {
     loadData();
    
   },[currentCity]);
+
   useEffect(()=>{
     setWeatherData(jakartaSample);
   },[]);
+
   return (
     <main >
       <WeatherDataContext.Provider value={weatherData}>
