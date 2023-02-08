@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ExtraDetail from './component/ExtraDetail'
 import MainDetail from './component/MainDetail'
 import Searchbar from './component/Searchbar'
@@ -92,6 +92,9 @@ function App() {
       "name": "Manila",
       "cod": 200
   }
+  const [weatherData, setWeatherData] = useState(null);
+  const [currentCity, setCurrentCity] = useState('');
+  const apikey = '0825296408d1c2e6799cc152703d801e';
 
   async function handleCitySearch(val){
     let fetch = await axios.get(`https://api.api-ninjas.com/v1/city?name=${val}`,{
@@ -101,15 +104,35 @@ function App() {
       }
     })
     let result = fetch.data;
-    console.log('city:' + val);
+    // console.log('city:' + val);
     let option = result.map((city)=>{return {value:city.name,label:city.name}});
     return option;
   }
+
+  function handleWeather(val){
+    console.log(val.value);
+    setCurrentCity(val.value);
+  }
+  useEffect(()=>{
+    if(currentCity === '') return;
+    async function loadData(){
+      try{
+        let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&units=metric&appid=${apikey}`)
+        if(response && response.data){
+          setWeatherData(response.data);
+        }
+      }catch(error){
+        console.log(error);
+      }
+    }
+
+    loadData();
+  },[currentCity]);
   return (
     <main className="App">
-      <WeatherDataContext.Provider value={jakartaSample}>
+      <WeatherDataContext.Provider value={weatherData || jakartaSample}>
           <div className="panel_main">
-            <AsyncSelect loadOptions={handleCitySearch} />
+            <AsyncSelect loadOptions={handleCitySearch}  onChange={handleWeather}/>
             {/* <Searchbar onValueChange={(val)=> console.log(val)} options={["Jakarta","Manila"]}/> */}
             <div className='main_panel'>
               <MainDetail/>
