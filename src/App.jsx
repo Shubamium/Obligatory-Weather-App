@@ -4,7 +4,8 @@ import MainDetail from './component/MainDetail'
 import Searchbar from './component/Searchbar'
 import { SideDetail } from './component/SideDetail'
 import WeatherDataContext from './context/WeatherDataContext'
-
+import AsyncSelect from 'react-select/async'
+import axios from 'axios'
 function App() {
   const jakartaSample = {
     "coord": {
@@ -91,11 +92,25 @@ function App() {
       "name": "Manila",
       "cod": 200
   }
+
+  async function handleCitySearch(val){
+    let fetch = await axios.get(`https://api.api-ninjas.com/v1/city?name=${val}`,{
+      headers:{
+        'Content-Type':'application/json',
+        'X-API-KEY':'vFuWC7Us573uNb763J90Vg==5y0lzPB2KiuSeY2Z'
+      }
+    })
+    let result = fetch.data;
+    console.log('city:' + val);
+    let option = result.map((city)=>{return {value:city.name,label:city.name}});
+    return option;
+  }
   return (
     <main className="App">
       <WeatherDataContext.Provider value={jakartaSample}>
           <div className="panel_main">
-            <Searchbar/>
+            <AsyncSelect loadOptions={handleCitySearch} />
+            {/* <Searchbar onValueChange={(val)=> console.log(val)} options={["Jakarta","Manila"]}/> */}
             <div className='main_panel'>
               <MainDetail/>
             </div>
