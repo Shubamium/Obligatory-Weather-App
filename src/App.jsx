@@ -93,7 +93,7 @@ function App() {
   }
   return (
     <main className="App">
-      <WeatherDataContext.Provider value={manilaSample}>
+      <WeatherDataContext.Provider value={jakartaSample}>
           <div className="panel_main">
             <Searchbar/>
             <div className='main_panel'>

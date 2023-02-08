@@ -9,18 +9,14 @@ export default function useCountryFlag(id){
     useEffect(()=>{
         const fetchUser = async()=>{
             try{
-                let url = `https://countryflagsapi.com/png/${id.toLowerCase()}`
-                let resp = await axios.get(url,{responseType:'blob',timeout:2000});
-                let blob = resp.data;
-                let src = URL.createObjectURL(blob);
-                
+            
                 let countryNameUrl = `https://restcountries.com/v2/alpha/${id.toLowerCase()}`
                 let countryData = await axios.get(countryNameUrl);
                 
                 const data = {
-                    image:src,
                     name:countryData.data.name
                 };
+                
                 setCF(res => {
                     return data;
                 });

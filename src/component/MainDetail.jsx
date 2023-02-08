@@ -39,7 +39,7 @@ export default function MainDetail() {
                                 <h2>{wd.name}</h2>
                                 {countryFlag.name && <p className='grey'>{countryFlag.name}</p>}
                             </div>
-                            {countryFlag.image ? <img src={countryFlag.image} alt="country flag" width="100" className='country-flag' /> : <p>Loading Flags. . .</p>}
+                            <img src={` https://flagcdn.com/w320/${wd.sys.country.toLowerCase()}.png `} alt="country flag" className='flag' />
                     </div>
                    
             </div>
