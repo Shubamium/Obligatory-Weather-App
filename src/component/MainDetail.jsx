@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
-// import { WiCelsius,WiCloud } from 'weather-icons-react';
-import { WiThermometer, WiCelsius, WiCloud } from 'react-icons/wi';
+import React, { useContext, useEffect } from 'react'
+import { WiThermometer, WiCelsius, WiCloud, WiFahrenheit } from 'react-icons/wi';
 import {TiWeatherPartlySunny} from 'react-icons/ti'
 import weatherDataContext from '../context/WeatherDataContext'
 import useCountryFlag from '../hooks/useCountryFlag'
-import { WeatherStat } from './WeatherStat';
 import { motion } from 'framer-motion';
+import Switch from './Switch';
+import unitContext,{getTemp, getTempValue, TEMP_UNIT} from '../context/UnitContext';
+
 export default function MainDetail() {
     let wd = useContext(weatherDataContext);
     let [countryFlag,error,flagLoading] = useCountryFlag(wd.sys.country);
@@ -21,6 +22,16 @@ export default function MainDetail() {
     if(!wd){
         return <></>;
     }
+
+    let {unit,setUnit} = useContext(unitContext);
+    let tempIcon = '°K';
+    let tempUnit = ''
+    useEffect(()=>{
+        console.log(unit.temp);
+  
+    },[unit]);
+        
+
     return (
         <>
             <motion.div
@@ -30,8 +41,7 @@ export default function MainDetail() {
             className="weather-general">
                     <div className='weather-general_temp'>
                         {wd && <>
-                            <h2 className='main-temp'><WiThermometer fontSize={'1em'} alignmentBaseline={'baseline'}/>{wd.main.temp}<span className='grey'><WiCelsius alignmentBaseline={'ideographic'} fontFamily={'Urbanist'}/></span></h2>
-                            {/* <WeatherStat header="Cloudiness" text={wd.clouds.all + '%'} icon={<TiWeatherPartlySunny alignmentBaseline={'baseline'}/>}/> */}
+                            <h2 className='main-temp'><WiThermometer fontSize={'1em'} alignmentBaseline={'baseline'}/>{getTempValue(unit.temp,wd.main.temp)}<span className='grey'>{getTemp(unit.temp)}</span></h2>
                             <div className="cloud">
                                 <p className='grey cloud_header'><TiWeatherPartlySunny alignmentBaseline={'auto'} />Cloudiness</p>
                                 <p className='cloud_percent'>{wd.clouds.all}%</p>
@@ -60,6 +70,9 @@ export default function MainDetail() {
 
                 <p>{unixToLocalTime(wd.dt)}</p>
                 <p className='white'>{wd.coord.lat}°N - {wd.coord.lon}°W</p>
+
+                <Switch options={['°C','°F','K']} defaults={0} onChanged={(val)=> setUnit({temp:TEMP_UNIT[val],speed:unit.speed})}/>
+                <Switch options={['metric','imperial']} defaults={0} onChanged={val=> setUnit({temp:unit.temp,speed:val})}/>
             </motion.div>
 
         </>

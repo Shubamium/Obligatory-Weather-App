@@ -290,3 +290,50 @@ svg{
     grid-template-columns: 1fr 1fr;
   }
 }
+
+
+.switch{
+  background-color: #e8f0ff;
+  padding: 0.1em .5em;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  gap: .1em;
+  margin: .2em 0;
+}
+
+.switch button{
+  /* background-color: #7b879f; */
+  font-family: 'Urbanist',sans-serif;
+  font-size: 1.4rem;
+  color: #232C3D;
+  background-color: transparent;
+  border: none;
+  padding: .2em .5em;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+  transition: all 250ms ease;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+}
+
+.switch button:hover, .switch button.active{
+  background-color: #7b879f;
+  cursor: pointer;
+  color: whitesmoke;
+
+}
+
+.switch button:not(.active):active{
+  scale: .9;
+
+}

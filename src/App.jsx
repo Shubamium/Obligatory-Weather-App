@@ -6,6 +6,7 @@ import WeatherDataContext from './context/WeatherDataContext'
 import AsyncSelect from 'react-select/async'
 import axios from 'axios'
 import { motion , AnimatePresence} from 'framer-motion'
+import UnitContext from './context/UnitContext'
 
 function App() {
 
@@ -55,6 +56,10 @@ function App() {
   }
 
   const [weatherData, setWeatherData] = useState(null);
+  const [unit,setUnit] = useState({
+    temp:'celsius',
+    speed:'metric'
+  });
   const [currentCity, setCurrentCity] = useState('');
   const apikey = '0825296408d1c2e6799cc152703d801e';
 
@@ -106,42 +111,43 @@ function App() {
 
   return (
     <main >
-      <WeatherDataContext.Provider value={weatherData}>
-        {weatherData ? 
-        <motion.div
-        className='App'
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        transition={{duration:2,delay:1.4}}
-        >
-            <div className="panel_main">
-            <motion.div className="searchbar" initial={{scaleY:0}} animate={{scaleY:1}} transition={{delay:1,duration:1.3}}>
-               <AsyncSelect loadOptions={handleCitySearch}  onChange={handleWeather}/>
-            </motion.div>
-            {/* <Searchbar onValueChange={(val)=> console.log(val)} options={["Jakarta","Manila"]}/> */}
-            <div className='main_panel'>
-              <MainDetail />
+      <UnitContext.Provider value={{unit,setUnit}}>
+        <WeatherDataContext.Provider value={weatherData}>
+          {weatherData ? 
+          <motion.div
+          className='App'
+          initial={{opacity:0}}
+          animate={{opacity:1}}
+          transition={{duration:2,delay:1.4}}
+          >
+              <div className="panel_main">
+              <motion.div className="searchbar" initial={{scaleY:0}} animate={{scaleY:1}} transition={{delay:1,duration:1.3}}>
+                <AsyncSelect loadOptions={handleCitySearch}  onChange={handleWeather}/>
+              </motion.div>
+              <div className='main_panel'>
+                <MainDetail />
+              </div>
+              <ExtraDetail/>
             </div>
-            <ExtraDetail/>
-          </div>
-          <div className='panel_side'>
-            <SideDetail/>
-          </div>
-        </motion.div>
-        :
-        <AnimatePresence
-        initial={true}
-        mode={'wait'}
-        >
-          <motion.h2
-          initial={{y:'100',opacity:0}}
-          animate={{y:'0',opacity:1}}
-          transition={{delay:0,duration:2}}
-          className="loading-text"
-          >Loading Data. . .</motion.h2>
-        </AnimatePresence>
-        }
-      </WeatherDataContext.Provider>
+            <div className='panel_side'>
+              <SideDetail/>
+            </div>
+          </motion.div>
+          :
+          <AnimatePresence
+          initial={true}
+          mode={'wait'}
+          >
+            <motion.h2
+            initial={{y:'100',opacity:0}}
+            animate={{y:'0',opacity:1}}
+            transition={{delay:0,duration:2}}
+            className="loading-text"
+            >Loading Data. . .</motion.h2>
+          </AnimatePresence>
+          }
+        </WeatherDataContext.Provider>
+      </UnitContext.Provider>
     </main>
   )
 }
