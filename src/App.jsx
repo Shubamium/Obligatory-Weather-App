@@ -132,7 +132,9 @@ function App() {
     <main className="App">
       <WeatherDataContext.Provider value={weatherData || jakartaSample}>
           <div className="panel_main">
-            <AsyncSelect loadOptions={handleCitySearch}  onChange={handleWeather}/>
+            <div className="searchbar">
+               <AsyncSelect loadOptions={handleCitySearch}  onChange={handleWeather}/>
+            </div>
             {/* <Searchbar onValueChange={(val)=> console.log(val)} options={["Jakarta","Manila"]}/> */}
             <div className='main_panel'>
               <MainDetail/>

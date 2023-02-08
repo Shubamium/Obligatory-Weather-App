@@ -250,3 +250,8 @@ svg{
   -ms-transition: all 350ms ease;
   -o-transition: all 350ms ease;
 }
+
+.searchbar{
+  padding: 1em 0;
+  margin: .5em 0;
+}

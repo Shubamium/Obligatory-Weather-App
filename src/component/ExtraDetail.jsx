@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import { WiBarometer, WiHumidity, WiThermometer, WiThermometerInternal } from 'react-icons/wi';
+import { WiBarometer, WiDust, WiHumidity, WiThermometer, WiThermometerInternal } from 'react-icons/wi';
 import { TbTemperatureMinus, TbTemperaturePlus} from 'react-icons/tb';
-import {BiTargetLock} from 'react-icons/bi'
+import {BiTargetLock, BiWater} from 'react-icons/bi'
 import weatherDataContext from '../context/WeatherDataContext'
 import {GiWindTurbine} from 'react-icons/gi'
+import {MdLandscape} from 'react-icons/md'
 import { WeatherStat } from './WeatherStat';
 
 export default function ExtraDetail() {
@@ -17,6 +18,12 @@ export default function ExtraDetail() {
           <WeatherStat header="Pressure" text={wd.main.feels_like + 'hPa' } icon={<BiTargetLock fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
           <WeatherStat header="Min Temperature" text={wd.main.temp_min + '°C'} icon={<TbTemperatureMinus fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
           <WeatherStat header="Max Temperature " text={wd.main.temp_max + '°C'} icon={<TbTemperaturePlus fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
+          {wd.main.grnd_level &&
+            <>
+              <WeatherStat header="Sea Level " text={wd.main.sea_level + 'hPa'} icon={<BiWater fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
+              <WeatherStat header="Ground Level " text={wd.main.grnd_level + 'hPa'} icon={<MdLandscape fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
+            </>
+          }
         </div>
 
          {/* <div className="weather-temp">
