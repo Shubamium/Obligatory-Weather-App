@@ -6,7 +6,7 @@ import { SideDetail } from './component/SideDetail'
 import WeatherDataContext from './context/WeatherDataContext'
 import AsyncSelect from 'react-select/async'
 import axios from 'axios'
-import { motion } from 'framer-motion'
+import { delay, motion , AnimatePresence} from 'framer-motion'
 function App() {
   const jakartaSample = {
     "coord": {
@@ -142,15 +142,15 @@ function App() {
         className='App'
         initial={{opacity:0}}
         animate={{opacity:1}}
-        transition={{duration:1}}
+        transition={{duration:2,delay:1.4}}
         >
             <div className="panel_main">
-            <div className="searchbar">
+            <motion.div className="searchbar" initial={{scaleY:0}} animate={{scaleY:1}} transition={{delay:1,duration:1.3}}>
                <AsyncSelect loadOptions={handleCitySearch}  onChange={handleWeather}/>
-            </div>
+            </motion.div>
             {/* <Searchbar onValueChange={(val)=> console.log(val)} options={["Jakarta","Manila"]}/> */}
             <div className='main_panel'>
-              <MainDetail/>
+              <MainDetail />
             </div>
             <ExtraDetail/>
           </div>
@@ -159,13 +159,17 @@ function App() {
           </div>
         </motion.div>
         :
-        <>
+        <AnimatePresence
+        initial={true}
+        mode={'wait'}
+        >
           <motion.h2
-          initial={{scaleY:0}}
-          animate={{scaleY:1}}
+          initial={{y:'100',opacity:0}}
+          animate={{y:'0',opacity:1}}
+          transition={{delay:0,duration:2}}
           className="loading-text"
           >Loading Data. . .</motion.h2>
-        </>
+        </AnimatePresence>
         }
       </WeatherDataContext.Provider>
     </main>

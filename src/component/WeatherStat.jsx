@@ -5,7 +5,8 @@ export function WeatherStat({header,icon,text}){
         <motion.div className="weather-stat"
             initial={{y:100}}
             whileInView={{y:0}}
-            transition={{ease:"easeOut"}}
+            animate={{y:0}}
+            transition={{ease:"easeOut", type:'spring'}}
             whileHover={{scale:1.05}}
         >
             <div className="icon">

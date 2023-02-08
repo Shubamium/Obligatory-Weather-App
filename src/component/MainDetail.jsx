@@ -5,7 +5,7 @@ import {TiWeatherPartlySunny} from 'react-icons/ti'
 import weatherDataContext from '../context/WeatherDataContext'
 import useCountryFlag from '../hooks/useCountryFlag'
 import { WeatherStat } from './WeatherStat';
-
+import { motion } from 'framer-motion';
 export default function MainDetail() {
     let wd = useContext(weatherDataContext);
     let [countryFlag,error,flagLoading] = useCountryFlag(wd.sys.country);
@@ -23,7 +23,11 @@ export default function MainDetail() {
     }
     return (
         <>
-            <div className="weather-general">
+            <motion.div
+            initial={{y:100,opacity:0}}
+            animate={{y:0,opacity:1}}
+            transition={{delay:1.2,duration:.7}}
+            className="weather-general">
                     <div className='weather-general_temp'>
                         {wd && <>
                             <h2 className='main-temp'><WiThermometer fontSize={'1em'} alignmentBaseline={'baseline'}/>{wd.main.temp}<span className='grey'><WiCelsius alignmentBaseline={'ideographic'} fontFamily={'Urbanist'}/></span></h2>
@@ -42,16 +46,21 @@ export default function MainDetail() {
                             <img src={` https://flagcdn.com/w320/${wd.sys.country.toLowerCase()}.png `} alt="country flag" className='flag' />
                     </div>
                    
-            </div>
+            </motion.div>
 
-            <div className="country-data">
+            <motion.div 
+             initial={{y:100,opacity:0,scaleX:-1}}
+             animate={{y:0,opacity:1,scaleX:1}}
+             transition={{delay:1.5,duration:.7}}
+            
+            className="country-data">
                 <h2>{capitalize(wd.weather[0].description)}</h2>
                 <p>{wd.weather[0].main}</p>
                 <img className="img-shadow" src={`http://openweathermap.org/img/wn/${wd.weather[0].icon}@2x.png`} width="80px"alt="weather-icon" className="weather-icon"/>
 
                 <p>{unixToLocalTime(wd.dt)}</p>
                 <p className='white'>{wd.coord.lat}°N - {wd.coord.lon}°W</p>
-            </div>
+            </motion.div>
 
         </>
     )
