@@ -6,6 +6,7 @@ import { SideDetail } from './component/SideDetail'
 import WeatherDataContext from './context/WeatherDataContext'
 import AsyncSelect from 'react-select/async'
 import axios from 'axios'
+import { motion } from 'framer-motion'
 function App() {
   const jakartaSample = {
     "coord": {
@@ -114,6 +115,7 @@ function App() {
     setCurrentCity(val.value);
   }
   useEffect(()=>{
+    setWeatherData('');
     if(currentCity === '') return;
     async function loadData(){
       try{
@@ -128,10 +130,20 @@ function App() {
 
     loadData();
   },[currentCity]);
+  useEffect(()=>{
+    setWeatherData(jakartaSample);
+  },[]);
   return (
-    <main className="App">
-      <WeatherDataContext.Provider value={weatherData || jakartaSample}>
-          <div className="panel_main">
+    <main >
+      <WeatherDataContext.Provider value={weatherData}>
+        {weatherData ? 
+        <motion.div
+        className='App'
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:1}}
+        >
+            <div className="panel_main">
             <div className="searchbar">
                <AsyncSelect loadOptions={handleCitySearch}  onChange={handleWeather}/>
             </div>
@@ -144,6 +156,12 @@ function App() {
           <div className='panel_side'>
             <SideDetail/>
           </div>
+        </motion.div>
+        :
+        <>
+          <h2>Loading Data. . .</h2>
+        </>
+        }
       </WeatherDataContext.Provider>
     </main>
   )

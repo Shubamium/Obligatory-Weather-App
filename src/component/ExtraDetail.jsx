@@ -6,13 +6,14 @@ import weatherDataContext from '../context/WeatherDataContext'
 import {GiWindTurbine} from 'react-icons/gi'
 import {MdLandscape} from 'react-icons/md'
 import { WeatherStat } from './WeatherStat';
+import { motion } from 'framer-motion';
 
 export default function ExtraDetail() {
   const wd = useContext(weatherDataContext);
   return (
     <div className='air-condition'>
         <h2><GiWindTurbine />AIR CONDITIONS</h2>
-        <div className="stats">
+        <motion.div className="stats" initial={{opacity:0}} animate={{opacity:1}}>
           <WeatherStat header="Real Feel" text={wd.main.feels_like + '°C'} icon={<WiThermometer fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
           <WeatherStat header="Humidity " text={wd.main.humidity + '%'} icon={<WiHumidity fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
           <WeatherStat header="Pressure" text={wd.main.feels_like + 'hPa' } icon={<BiTargetLock fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
@@ -24,7 +25,7 @@ export default function ExtraDetail() {
               <WeatherStat header="Ground Level " text={wd.main.grnd_level + 'hPa'} icon={<MdLandscape fontSize={'1.2rem'} alignmentBaseline={'baseline'}/>} />
             </>
           }
-        </div>
+        </motion.div>
 
          {/* <div className="weather-temp">
             <div className="stat">
