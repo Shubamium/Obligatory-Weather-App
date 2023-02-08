@@ -30,11 +30,7 @@
   grid-template-columns: 1fr 150px;
   gap:1em;
 }
-@media screen and (max-width:1000px) {
-  .App{
-    display: block;
-  }
-}
+
 #root{
   margin: 0 auto;
   max-width: 900px;
@@ -119,8 +115,7 @@
   position: relative;
   margin: 0 -15px;
 }
-.panel_side{
-}
+
 .panel_side .stats{
   display: flex;
   flex-direction: column;
@@ -259,4 +254,39 @@ svg{
 .searchbar{
   padding: 1em 0;
   margin: .5em 0;
+}
+
+.loading-text{
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  font-size: 4rem;
+  color: #7b879f;
+}
+
+
+@media screen and (max-width:1000px) {
+  .App{
+    display: block;
+  }
+}
+@media screen and (max-width:700px){
+  .main_panel{
+    grid-template-columns: 1fr 1fr;
+  }
+  .cloud{
+    width: 100%;
+    max-width: initial;
+  }
+}
+@media screen and (max-width:550px) {
+  .main_panel{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  .air-condition .stats{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }

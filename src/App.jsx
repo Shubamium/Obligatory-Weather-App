@@ -129,6 +129,7 @@ function App() {
     }
 
     loadData();
+   
   },[currentCity]);
   useEffect(()=>{
     setWeatherData(jakartaSample);
@@ -159,7 +160,11 @@ function App() {
         </motion.div>
         :
         <>
-          <h2>Loading Data. . .</h2>
+          <motion.h2
+          initial={{scaleY:0}}
+          animate={{scaleY:1}}
+          className="loading-text"
+          >Loading Data. . .</motion.h2>
         </>
         }
       </WeatherDataContext.Provider>
