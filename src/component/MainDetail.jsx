@@ -31,6 +31,10 @@ export default function MainDetail() {
   
     },[unit]);
         
+    function getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value);
+    }
+      
 
     return (
         <>
@@ -71,8 +75,8 @@ export default function MainDetail() {
                 <p>{unixToLocalTime(wd.dt)}</p>
                 <p className='white'>{wd.coord.lat}°N - {wd.coord.lon}°W</p>
 
-                <Switch options={['°C','°F','K']} defaults={0} onChanged={(val)=> setUnit({temp:TEMP_UNIT[val],speed:unit.speed})}/>
-                <Switch options={['metric','imperial']} defaults={0} onChanged={val=> setUnit({temp:unit.temp,speed:val})}/>
+                <Switch options={['°C','°F','K']} defaults={getKeyByValue(TEMP_UNIT,unit.temp)} onChanged={(val)=> setUnit({temp:TEMP_UNIT[val],speed:unit.speed})}/>
+                <Switch options={['metric','imperial']} defaults={unit.speed} onChanged={val=> setUnit({temp:unit.temp,speed:val})}/>
             </motion.div>
 
         </>

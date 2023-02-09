@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export default function Switch({options, onChanged, defaults}) {
   const [selected, setSelected] = useState(options[defaults] || null);
-
+console.log(selected);
   return (
     <div className='switch'>
         {options && options.map((opt)=>{

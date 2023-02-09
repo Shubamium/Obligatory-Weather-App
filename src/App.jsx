@@ -122,7 +122,7 @@ function App() {
           >
               <div className="panel_main">
               <motion.div className="searchbar" initial={{scaleY:0}} animate={{scaleY:1}} transition={{delay:1,duration:1.3}}>
-                <AsyncSelect loadOptions={handleCitySearch}  onChange={handleWeather}/>
+                <AsyncSelect placeholder="Search cities. . ." loadOptions={handleCitySearch}  onChange={handleWeather}/>
               </motion.div>
               <div className='main_panel'>
                 <MainDetail />
