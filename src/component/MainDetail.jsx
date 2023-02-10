@@ -70,7 +70,7 @@ export default function MainDetail() {
             className="country-data">
                 <h2>{capitalize(wd.weather[0].description)}</h2>
                 <p>{wd.weather[0].main}</p>
-                <img className="img-shadow" src={`http://openweathermap.org/img/wn/${wd.weather[0].icon}@2x.png`} width="80px"alt="weather-icon" className="weather-icon"/>
+                <img  className="weather-icon" src={`http://openweathermap.org/img/wn/${wd.weather[0].icon}@2x.png`} width="80px"alt="weather-icon"/>
 
                 <p>{unixToLocalTime(wd.dt)}</p>
                 <p className='white'>{wd.coord.lat}°N - {wd.coord.lon}°W</p>

@@ -7,6 +7,7 @@ import AsyncSelect from 'react-select/async'
 import axios from 'axios'
 import { motion , AnimatePresence} from 'framer-motion'
 import UnitContext from './context/UnitContext'
+import useWeatherSearch from './hooks/useWeatherSearch'
 
 function App() {
 
@@ -63,15 +64,21 @@ function App() {
   const [currentCity, setCurrentCity] = useState('');
   const apikey = '0825296408d1c2e6799cc152703d801e';
 
+  let abort = new AbortController();
   async function handleCitySearch(val){
     let link = new URL("https://api.api-ninjas.com/v1/city");
     link.searchParams.append('name',val);
+    abort.abort();
+    
+    abort = new AbortController();
     let fetch = await axios.get(link.href,{
       headers:{
         'Content-Type':'application/json',
         'X-API-KEY':'vFuWC7Us573uNb763J90Vg==5y0lzPB2KiuSeY2Z'
-      }
+      },
+      signal: abort.signal
     })
+    
     let result = fetch.data;
     let option = result.map((city)=>{return {value:city.name,label:city.name}});
     return option;
@@ -107,8 +114,10 @@ function App() {
 
   useEffect(()=>{
     setWeatherData(jakartaSample);
+    
   },[]);
 
+  useWeatherSearch(currentCity);
   return (
     <main >
       <UnitContext.Provider value={{unit,setUnit}}>
