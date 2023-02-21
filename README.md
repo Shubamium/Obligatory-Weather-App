@@ -6,7 +6,6 @@ Library or concepts I've learned doing this project
   OpenWeatherMap (API Source)
   FlagsAPI (Country Flags Database)
   APINinja - City (API Source for city Name)
-  
   Axios (Fetching)
   Custom Logic with Custom Hooks
   React Select (autocomplete city search) 
